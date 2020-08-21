@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [
+   {
+       "name": "resourceGroup",
+       "type": "Microsoft.Resources/resourceGroups",
+       "apiVersion": "2019-10-01",
+       "location": "eastus",
+       "dependsOn": [
+       ],
+       "tags": {
+       }
+   },
+{
+    "name": "trafficManagerProfile1",
+    "type": "Microsoft.Network/trafficManagerProfiles",
+    "apiVersion": "2018-04-01",
+    "tags": {
+    },
+    "location": "global",
+    "properties": {
+        "profileStatus": "Enabled",
+        "trafficRoutingMethod": "Performance",
+        "dnsConfig": {
+            "relativeName": "dnsConfig",
+            "ttl": 30
+        },
+        "monitorConfig": {
+            "protocol": "HTTP",
+            "port": 80,
+            "path": "path",
+            "intervalInSeconds": 30,
+            "timeoutInSeconds": 5,
+            "toleratedNumberOfFailures": 3
+        },
+        "endpoints": [
+            {
+                "properties": {
+                    "targetResourceId": "targetId",
+                    "endpointStatus": "Enabled",
+                    "weight": 100,
+                    "priority": 1
+                }
+            }
+        ]
+    }
+}
+    ],
+    "outputs": {}
+}
